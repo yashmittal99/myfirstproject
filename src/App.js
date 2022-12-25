@@ -1,11 +1,11 @@
-import Cartitem from "./components/Cartitem";
+import Cart from "./components/Cart";
 
 import './styles/cartitem.scss';
 
 function App() {
   return (
     <div className="App">
-      <Cartitem />
+      <Cart />
     </div>
   );
 }

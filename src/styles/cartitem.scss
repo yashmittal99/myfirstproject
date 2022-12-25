@@ -1,6 +1,13 @@
+.cart{
+    display: flex;
+    flex-direction: column;
+}
+
 .cartitem{
     display: inline-flex;
-    margin: 40px 10px;
+    margin: 20px 10px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .images {
@@ -11,10 +18,12 @@
 }
 .right-block{
     padding: 0 20px;
+    justify-content: center;
+    font-size: 20px;
 }
 
 .cart-action{
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: -10px;
 }
 
