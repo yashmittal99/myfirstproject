@@ -34,57 +34,82 @@ class App extends React.Component {
             }
         ]
     }
-}
-handleIncreaseQuantity = (product) => {
+  }
+  handleIncreaseQuantity = (product) => {
+      const { products } = this.state;
+      const index = products.indexOf(product);
+
+      products[index].qty += 1;
+
+      this.setState({
+          // products: products
+          //we can use products single because the key and value have the same name
+          products
+      })
+  }
+  handleDecreaseQuantity = (product) => {
+      const { products } = this.state;
+      const index = products.indexOf(product);
+
+      if(products[index].qty === 0) {
+          return;
+      }
+
+      products[index].qty -= 1;
+
+      this.setState({
+          // products: products
+          //we can use products single because the key and value have the same name
+          products
+      })
+
+  }
+  handleDeleteProduct = (id) => {
+      const { products } = this.state
+
+      const items = products.filter((item) => item.id !== id); //[{}]
+
+      this.setState({
+          products: items
+      })
+  }
+
+  getCartCount = () => {
     const { products } = this.state;
-    const index = products.indexOf(product);
 
-    products[index].qty += 1;
+    let count = 0;
 
-    this.setState({
-        // products: products
-        //we can use products single because the key and value have the same name
-        products
+    products.forEach((product) => {
+      count += product.qty;
     })
-}
-handleDecreaseQuantity = (product) => {
+
+    return count;
+  }
+
+  getCartTotal = () => {
     const { products } = this.state;
-    const index = products.indexOf(product);
 
-    if(products[index].qty === 0) {
-        return;
-    }
+    let cartTotal = 0;
 
-    products[index].qty -= 1;
-
-    this.setState({
-        // products: products
-        //we can use products single because the key and value have the same name
-        products
+    products.map((product) => {
+      cartTotal = cartTotal + product.qty * product.price;
     })
 
-}
-handleDeleteProduct = (id) => {
-    const { products } = this.state
-
-    const items = products.filter((item) => item.id !== id); //[{}]
-
-    this.setState({
-        products: items
-    })
-}
+    return cartTotal;
+  }
 
   render () {
     const { products } = this.state;
     return (
       <div className="App">
-        <Navbar />
+        <Navbar count={this.getCartCount()}/>
         <Cart 
           products={products}
           onIncreaseQuantity={this.handleIncreaseQuantity}
           onDecreaseQuantity={this.handleDecreaseQuantity}
           onDeleteProduct={this.handleDeleteProduct}
         />
+        <div style={{padding: 10, fontSize: 20}}>Total : {this.getCartTotal()}</div>
       </div>
     );
   }
