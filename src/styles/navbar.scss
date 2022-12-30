@@ -1,0 +1,25 @@
+.nav{
+    height: 8vh;
+    background-color: #5895ef;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.icon-container{
+    position: relative;
+}
+
+.cart-icon{
+    height: 40px;
+    margin-right: 20px;
+}
+
+.cart-count{
+    background-color: yellow;
+    border-radius: 50%;
+    padding: 2px 6px;
+    position: absolute;
+    right: 10px;
+    top:-2px;
+}
